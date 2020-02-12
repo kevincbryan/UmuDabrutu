@@ -25,16 +25,17 @@ public class ClimbJuggle : MonoBehaviour
     {
         MoveToRadius();
         HorizontalClimb();
+        VerticalClimb();
         
     }
 
     void MoveToRadius ()
     {
-        Vector2 dir = new Vector2 (climbable.transform.position.x, climbable.transform.position.z) - new Vector2 (gameObject.transform.position.x, gameObject.transform.position.z);
+        Vector3 dir = new Vector3 (climbable.transform.position.x, gameObject.transform.position.y, climbable.transform.position.z) - gameObject.transform.position;
         Vector3 endPos;
         if (dir.magnitude > radius)
         {
-            endPos = gameObject.transform.position + new Vector3 (dir.x, 0, dir.y).normalized * radius;
+            endPos = gameObject.transform.position + new Vector3 (dir.x, gameObject.transform.position.y, dir.z).normalized * radius;
             transform.position = Vector3.MoveTowards(transform.position, endPos, speed * .5f * Time.deltaTime);
         }
 
@@ -43,7 +44,15 @@ public class ClimbJuggle : MonoBehaviour
 
     void HorizontalClimb ()
     {
-        transform.RotateAround(climbable.transform.position, Vector3.up, Time.deltaTime * speed * Input.GetAxis("Horizontal"));
+        transform.RotateAround(climbable.transform.position, Vector3.up, Time.deltaTime * speed * -Input.GetAxis("Horizontal"));
+    }
+
+    void VerticalClimb ()
+    {
+        float hor = Input.GetAxis("Horizontal");
+        float ver = Input.GetAxis("Vertical");
+        Vector3 playerMovement = new Vector3(0f, ver, 0f) * .5f * speed * Time.deltaTime;
+        transform.Translate(playerMovement, Space.Self);
     }
    
 }
