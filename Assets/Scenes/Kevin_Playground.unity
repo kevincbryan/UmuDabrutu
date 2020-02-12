@@ -154,7 +154,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pCon: {fileID: 448717582}
-  climbable: {fileID: 930033022}
+  climbable: {fileID: 930033025}
+  nextRadii: {fileID: 0}
+  atBottom: 0
+  atTop: 0
 --- !u!4 &448717579
 Transform:
   m_ObjectHideFlags: 0
@@ -184,7 +187,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -477,12 +480,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 139.26999, y: -33.52899, z: -9.448975}
---- !u!1 &930033022 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3333408305403794579, guid: 023129a3ebf850f4483fe51722732258,
+--- !u!114 &930033025 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4863341874028362482, guid: 023129a3ebf850f4483fe51722732258,
     type: 3}
   m_PrefabInstance: {fileID: 167208267877373908}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae78c27572336e340abeceec1d7bc44e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1155518648 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8175130768003017921, guid: 023129a3ebf850f4483fe51722732258,
