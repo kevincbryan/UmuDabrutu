@@ -52,6 +52,7 @@ public class ClimbJuggle : MonoBehaviour
             {
                 radius = Mathf.Lerp(nextRadii.radius, climbable.radius, lerpSource);
                 Debug.Log("Current Radius: " + climbable + "Next Radius: " + nextRadii + "Radius up is " + radius);
+                Debug.Log("Climbable Y is " + climbable.gameObject.transform.position.y);
             }
 
         }
@@ -69,6 +70,7 @@ public class ClimbJuggle : MonoBehaviour
             {
                 radius = Mathf.Lerp(climbable.radius, nextRadii.radius, lerpSource);
                 Debug.Log("Current Radius: " + climbable + "Next Radius: " + nextRadii + "Radius down is " + radius);
+                Debug.Log("Climbable Y is " + climbable.gameObject.transform.position.y);
             }
         }
             
@@ -131,7 +133,7 @@ public class ClimbJuggle : MonoBehaviour
         }
 
         if (transform.position.y >= climbable.gameObject.transform.position.y + climbable.radius) climbable = climbable.upR;
-        if (transform.position.y <= climbable.gameObject.transform.position.y - climbable.radius) climbable = climbable.downR;
+        if (transform.position.y < climbable.gameObject.transform.position.y - climbable.radius) climbable = climbable.downR;
 
         //Debug.Log(climbable);
         
