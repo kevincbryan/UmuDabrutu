@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpoutRadii : MonoBehaviour
+public class Climbable : MonoBehaviour
 {
-    public SpoutRadii upR;
-    public SpoutRadii downR;
-    public float radius;
+    public bool isClimbed = false;
+    public Mesh myMesh;
     // Start is called before the first frame update
     void Start()
     {
-        //radius = gameObject.GetComponent<CapsuleCollider>().radius;
+        
     }
 
     // Update is called once per frame

@@ -6,6 +6,7 @@ public class ThirdPersonCharacterController : MonoBehaviour
 {
     public float speed = 1f;
     public bool isClimbing = false;
+    public Transform playerObject;
     // Start is called before the first frame update
     void Start()
     {

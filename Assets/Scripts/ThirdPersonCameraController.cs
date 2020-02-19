@@ -6,6 +6,7 @@ public class ThirdPersonCameraController : MonoBehaviour
 {
     public float rotationSpeed = 1;
     public Transform target, player;
+    public ClimbJuggle myClimb;
     float mouseX, mouseY;
 
     // Start is called before the first frame update
@@ -38,7 +39,10 @@ public class ThirdPersonCameraController : MonoBehaviour
         transform.LookAt(target);
 
         target.rotation = Quaternion.Euler(mouseY, mouseX, 0);
-        player.rotation = Quaternion.Euler(0, mouseX, 0);
+       if (myClimb)
+            if (myClimb.isClimbing == false)
+                player.rotation = Quaternion.Euler(0, mouseX, 0);
+       
 
     }
 }
