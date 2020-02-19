@@ -22,9 +22,13 @@ namespace Climb
         public float speed_multiplier = 0.2f;
         public float climbSpeed = 3;
         public float rotateSpeed = 5;
+        public float inAngleDis = 1;
         float delta;
         Transform helper;
-        
+
+        public float horizontal;
+        public float vertical;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -54,7 +58,6 @@ namespace Climb
         void InitForClimb(RaycastHit hit)
         {
             isClimbing = true;
- 
             helper.transform.rotation = Quaternion.LookRotation(-hit.normal);
             startPos = transform.position;
             targetPos = hit.point + (hit.normal * offsetFromWall);
@@ -79,12 +82,13 @@ namespace Climb
 
             if (!isLerping)
             {
-                float hor = Input.GetAxis("Horizontal");
-                float vert = Input.GetAxis("Vertical");
-                float m = Mathf.Abs(hor) + Mathf.Abs(vert);
+                
+                horizontal = Input.GetAxis("Horizontal");
+                vertical = Input.GetAxis("Vertical");
+                float m = Mathf.Abs(horizontal) + Mathf.Abs(vertical);
 
-                Vector3 h = helper.right * hor;
-                Vector3 v = helper.up * vert;
+                Vector3 h = helper.right * horizontal;
+                Vector3 v = helper.up * vertical;
                 Vector3 moveDir = (h + v).normalized;
 
                 bool canMove = CanMove(moveDir);
@@ -94,7 +98,7 @@ namespace Climb
                 t = 0;
                 isLerping = true;
                 startPos = transform.position;
-               // Vector3 tp = helper.position - transform.position;
+                //Vector3 tp = helper.position - transform.position;
 
                 targetPos = helper.position;
 
@@ -118,24 +122,28 @@ namespace Climb
 
         bool CanMove (Vector3 moveDir)
         {
+            
             Vector3 origin = transform.position;
             float dis = positionOffset;
             Vector3 dir = moveDir;
-            Debug.DrawRay(origin, dir * dis);
+            Debug.DrawRay(origin, dir * dis, Color.red);
             RaycastHit hit;
 
+            //Debug.DrawRay(origin, dir * dis2, Color.blue);
             if (Physics.Raycast (origin, dir, out hit, dis))
             {
+                //Debug.Log("f");
                 return false;
             }
 
             origin += moveDir * dis;
             dir = helper.forward;
-            float dis2 = 0.5f;
+            float dis2 = inAngleDis;
 
-            Debug.DrawRay(origin, dir * dis2);
+            Debug.DrawRay(origin, dir * dis2, Color.blue);
             if (Physics.Raycast (origin, dir, out hit, dis))
             {
+                //Debug.Log("F");
                 helper.position = PosWithOffset(origin, hit.point);
                 helper.rotation = Quaternion.LookRotation(-hit.normal);
                 return true;
@@ -143,7 +151,7 @@ namespace Climb
             origin += dir * dis2;
             dir = -Vector3.up;
 
-            Debug.DrawRay(origin, dir);
+            Debug.DrawRay(origin, dir, Color.yellow);
             if (Physics.Raycast(origin, dir, out hit, dis2))
             {
                 float angle = Vector3.Angle(helper.up, hit.normal);
