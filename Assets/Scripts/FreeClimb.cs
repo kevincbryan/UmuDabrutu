@@ -129,10 +129,10 @@ namespace Climb
             Debug.DrawRay(origin, dir * dis, Color.red);
             RaycastHit hit;
 
-            //Debug.DrawRay(origin, dir * dis2, Color.blue);
+            
             if (Physics.Raycast (origin, dir, out hit, dis))
             {
-                //Debug.Log("f");
+                
                 return false;
             }
 
@@ -143,7 +143,7 @@ namespace Climb
             Debug.DrawRay(origin, dir * dis2, Color.blue);
             if (Physics.Raycast (origin, dir, out hit, dis))
             {
-                //Debug.Log("F");
+                
                 helper.position = PosWithOffset(origin, hit.point);
                 helper.rotation = Quaternion.LookRotation(-hit.normal);
                 return true;
@@ -168,7 +168,24 @@ namespace Climb
                 
             }
 
-            
+            Debug.DrawRay(origin, dir, Color.yellow);
+            if (Physics.Raycast(origin, dir, out hit, dis2))
+            {
+                float angle = Vector3.Angle(helper.right, hit.normal);
+                if (angle < 40)
+                {
+
+                    helper.position = PosWithOffset(origin, hit.point);
+                    helper.rotation = Quaternion.LookRotation(-hit.normal);
+                    return true;
+
+                }
+
+
+
+            }
+
+
             return false;
 
         }
