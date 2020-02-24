@@ -155,7 +155,7 @@ namespace Climb
             if (Physics.Raycast(origin, dir, out hit, dis2))
             {
                 float angle = Vector3.Angle(helper.up, hit.normal);
-                if (angle < 40)
+                if (angle < 60)
                 {
 
                     helper.position = PosWithOffset(origin, hit.point);
@@ -172,7 +172,7 @@ namespace Climb
             if (Physics.Raycast(origin, dir, out hit, dis2))
             {
                 float angle = Vector3.Angle(helper.right, hit.normal);
-                if (angle < 40)
+                if (angle < 60)
                 {
 
                     helper.position = PosWithOffset(origin, hit.point);
