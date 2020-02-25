@@ -39,9 +39,21 @@ public class ThirdPersonCameraController : MonoBehaviour
         transform.LookAt(target);
 
         target.rotation = Quaternion.Euler(mouseY, mouseX, 0);
+        
        if (myClimb)
+       {
             if (myClimb.isClimbing == false)
+            {
                 player.rotation = Quaternion.Euler(0, mouseX, 0);
+            }
+
+        }
+        else
+        {
+            player.rotation = Quaternion.Euler(0, mouseX, 0);
+        }
+
+
        
 
     }
