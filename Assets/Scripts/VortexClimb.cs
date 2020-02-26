@@ -6,6 +6,7 @@ public class VortexClimb : MonoBehaviour
 {
     public FreeClimb myClimb;
 
+
     // Start is called before the first frame update
     void Start()
     {
