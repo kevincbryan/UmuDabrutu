@@ -203,8 +203,9 @@ MonoBehaviour:
   myController: {fileID: 0}
   myCamera: {fileID: 0}
   swimTarget: {fileID: 7311829949358651593}
-  swimSpeed: 10
+  swimSpeed: 30
   isSwimming: 0
+  doOnce: 0
 --- !u!1001 &1093648213819570081
 PrefabInstance:
   m_ObjectHideFlags: 0
