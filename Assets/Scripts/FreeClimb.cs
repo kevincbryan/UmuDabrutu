@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Climb
-{
 
 
     public class FreeClimb : MonoBehaviour
     {
         public Animator anim;
+        public ThirdPersonCharacterController myController;
+        public ThirdPersonCameraController myCamera;
         public bool isClimbing;
+        public Rigidbody myBody;
         bool inPosition;
         bool isLerping;
         float t;
@@ -32,14 +33,17 @@ namespace Climb
         // Start is called before the first frame update
         void Start()
         {
-            Init();
+            //Init();
         }
 
         public void Init()
         {
+
+       
             helper = new GameObject().transform;
             helper.name = "climb helper";
             CheckForClimb();
+          
         }
 
         public void CheckForClimb()
@@ -51,6 +55,7 @@ namespace Climb
             if (Physics.Raycast(origin,dir, out hit, 5))
             {
                 helper.position = PosWithOffset(origin, hit.point);
+            //Debug.Log("Climbable Area is Found");
                 InitForClimb(hit);
             }
         }
@@ -58,22 +63,36 @@ namespace Climb
         void InitForClimb(RaycastHit hit)
         {
             isClimbing = true;
+            myController.isClimbing = true;
+            myCamera.isClimbing = true;
+            myBody = myController.gameObject.GetComponent<Rigidbody>();
+            myBody.useGravity = false;
+            
             helper.transform.rotation = Quaternion.LookRotation(-hit.normal);
             startPos = transform.position;
             targetPos = hit.point + (hit.normal * offsetFromWall);
             t = 0;
             inPosition = false;
+            Debug.Log("InitForClimb is called. We are InPosition? " + inPosition);
             if (anim) anim.CrossFade("climb_idle", 2);
         }
 
         void Update()
         {
+        //Debug.Log("Update has been called");
+
+        if (isClimbing)
+        {
             delta = Time.deltaTime;
-            Tick(delta);   
+            Tick(delta);
+        }
+
+         
         }
 
         public void Tick (float delta)
         {
+        //Debug.Log("Tick has been called delta is " + delta);
             if (!inPosition)
             {
                 GetInPosition();
@@ -193,6 +212,8 @@ namespace Climb
 
         void GetInPosition()
         {
+
+        Debug.Log("GetInPosition is called");
             t += delta;
             if (t > 1)
             {
@@ -214,4 +235,4 @@ namespace Climb
             return target + offset;
         }
     }
-}
+

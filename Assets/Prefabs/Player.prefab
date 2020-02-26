@@ -301,11 +301,10 @@ GameObject:
   - component: {fileID: 986931918318200860}
   - component: {fileID: 986931918318200861}
   - component: {fileID: 986931918318200862}
-  - component: {fileID: 986931918318200856}
   - component: {fileID: 4763388478171434929}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -385,25 +384,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &986931918318200856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6569866113197218766}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 700913d62b456ee408aff406d7d2f9cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pCon: {fileID: 986931918318200860}
-  climbable: {fileID: 0}
-  nextRadii: {fileID: 0}
-  atBottom: 0
-  atTop: 0
-  myClimb: {fileID: 0}
-  isClimbing: 0
 --- !u!114 &4763388478171434929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -416,3 +396,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a68e867209908a4e90881637b2ef034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  isClimbing: 0
+  positionOffset: 0
+  offsetFromWall: 0.3
+  speed_multiplier: 0.2
+  climbSpeed: 3
+  rotateSpeed: 5
+  inAngleDis: 1
+  horizontal: 0
+  vertical: 0
